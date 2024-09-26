@@ -13,6 +13,26 @@
         </div>
         <button class="startup-button" type="button">Play Game</button>
     </div>
+
+    <div class="players-container">
+        <h2>Enter Player names</h2>
+        <form action="/" method="post">
+            <fieldset class="form-column">
+                <div class="player-marker"><p>X</p></div>
+                <input type="text" id="player1-name" placeholder="Player 1" required>
+            </fieldset>
+            <fieldset class="form-column">
+                <div class="player-marker"><p>O</p></div>
+                <input type="text" id="player2-name" placeholder="Player 2" required>
+            </fieldset>
+            <button type="button" id="Start-game-button">Start Game</button>
+        </form>
+    </div>
+
+
+    <div class="footer">
+        <h3>Made by <a href="https://github.com/FranVlahovic">FranVlahovic<img src="icons/github.svg" alt=""></a></h3>
+    </div>
     <script src="main.js"></script>
 </body>
 </html>
