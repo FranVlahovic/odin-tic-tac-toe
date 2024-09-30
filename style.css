@@ -4,15 +4,22 @@
     box-sizing: border-box;
     font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
+img {
+    max-width: 100%;
+    display: block;
+    height: auto;
+  }
 body {
     background-color: #1f3540;
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
     padding: 5rem;
 }
 .startup-container {
     background-color: #192a32;
+    border:3px solid #f2b237;
     display: flex;
     flex-direction: column;
     height: 100vh;
@@ -40,18 +47,11 @@ body {
     display: block;
     height: 20em;
 }
-.startup-container {
-    display: none;
-}
-.game-container {
-    display: none;
-}
-.players-container {
-    display: none;
-}
+
 
 .players-container {
     background-color: #192a32;
+    border:3px solid #f2b237;
     display: flex;
     flex-direction: column;
     height: 100vh;
@@ -90,17 +90,20 @@ body {
     color:white;
     opacity: 0.6;
 }
+.form-column input:focus {
+    outline: none;
+}
 
 .x-marker {
     color:#32c0ba;
     font-weight: bold;
     font-size: 1.3em;
-    padding: 15px;
+    padding: 15px 30px;
 }
 .o-marker {
     color: #f2b237;
     font-weight: bold;
-    padding: 15px;
+    padding: 15px 30px;
     font-size: 1.3em;
 }
 .players-container button {
@@ -116,4 +119,74 @@ body {
 }
 .players-container button:hover {
     opacity: 0.85;
+}
+.game-container {
+    background-color: #192a32;
+    border:3px solid #f2b237;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 8px;
+    height: 100vh;
+    width: 100%;
+    padding: 20px;
+}
+.game-container-header {
+    display: flex;
+    justify-content: space-between;
+}
+.game-logo-container {
+    width: 6em;
+}
+.player-turn {
+    display: flex;
+    border-radius: 20px;
+    align-items: center;
+    justify-content: center;
+    background-color: #1f3540;
+    color: white;
+    width: 30%;
+    height: 3em;
+    margin-top: 0.5em;
+    font-size: 1.7em;
+}
+#clear-button {
+    height: 6em;
+    width: 6em;
+    padding: 7px;
+    margin-top: 1em;
+    margin-right: 1em;
+    border-radius: 15px;
+    cursor: pointer;
+}
+#clear-button:hover {
+    opacity: 0.85;
+}
+
+.game-container-footer {
+    display: flex;
+    justify-content: center;
+    color:white;
+}
+.game-container-footer a {
+    display: inline-flex;
+    align-items: center;
+    text-decoration: none;
+}
+.game-container h3 {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+.game-container-footer a:visited {
+    color: white;
+}
+.github-icon {
+    width: 2em;
+    filter: invert(1);
+    margin-left: 5px;
+}
+
+.overlay {
+    display: none;
 }
