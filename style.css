@@ -126,21 +126,27 @@ body {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    gap: 8px;
+    gap: 4em;
     height: 100vh;
     width: 100%;
-    padding: 20px;
+    padding: 1.5em;
 }
 .game-container-header {
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
+    gap: 6em;
 }
 .game-logo-container {
+    position: relative;
     width: 6em;
+}
+.game-logo-container img {
+    position: absolute;
+    right: 25em;
 }
 .player-turn {
     display: flex;
-    border-radius: 20px;
+    border-radius: 15px;
     align-items: center;
     justify-content: center;
     background-color: #1f3540;
@@ -153,23 +159,43 @@ body {
 #clear-button {
     height: 6em;
     width: 6em;
-    padding: 7px;
+    padding: 0.8em;
     margin-top: 1em;
-    margin-right: 1em;
     border-radius: 15px;
     cursor: pointer;
 }
 #clear-button:hover {
     opacity: 0.85;
 }
-
+.game-container-main {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(3, 1fr);
+    gap: 1.3em;
+}
+.cell {
+  background-color: #1f3540;
+  border-radius: 15px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 6em;
+  width: 1.7em;
+  height: 1.7em;
+  font-weight: bold;
+}
 .game-container-footer {
     display: flex;
     justify-content: center;
     color:white;
 }
 .game-container-footer a {
-    display: inline-flex;
+    display: flex;
     align-items: center;
     text-decoration: none;
 }
