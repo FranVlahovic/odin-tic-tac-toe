@@ -136,6 +136,7 @@ body {
     justify-content: center;
     gap: 6em;
 }
+
 .game-logo-container {
     position: relative;
     width: 6em;
@@ -167,6 +168,40 @@ body {
 #clear-button:hover {
     opacity: 0.85;
 }
+
+.scoreboard {
+    background-color: #1f3540;
+    display: flex;
+    flex-direction: column;
+    padding: 1.5em;
+    gap: 1.5em;
+    width: 14em;
+    border-radius: 15px;
+}
+.scoreboard-player1-win {
+    background-color: #32c0ba;
+}
+.scoreboard-tie {
+    background-color: white;
+}
+.scoreboard-player2-win {
+    background-color: #f2b237;
+}
+.scoreboard-player1-win, .scoreboard-tie, .scoreboard-player2-win{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 1em;
+    font-weight: bold;
+    color:#192a32;
+    border-radius: 15px;
+}
+.player1-score, .player2-score, .tie-score {
+    font-size: 1.7em;
+    font-weight: bold;
+    color:#192a32;
+}
+
 .game-container-main {
   display: flex;
   align-items: center;
