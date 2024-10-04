@@ -25,7 +25,7 @@
                 <div class="player-marker"><p class="o-marker">O</p></div>
                 <input type="text" id="player2-name" placeholder="Player 2" required>
             </fieldset>
-            <button type="button" id="Start-game-button">START GAME</button>
+            <button type="button" id="start-game-button">START GAME</button>
         </form>
     </div>
 
@@ -40,21 +40,6 @@
             <button type="button" id="clear-button">
                 <img src="icons/refresh.svg" alt="Refresh Icon" class="clear-img">
             </button>
-        </div>
-
-        <div class="scoreboard">
-            <div class="scoreboard-player1-win">
-                <p class="player1-score-title">PLAYER 1</p>
-                <p class="player1-score">0</p>
-            </div>
-            <div class="scoreboard-tie">
-                <p class="tie-score-title">TIES</p>
-                <p class="tie-score">0</p>
-            </div>
-            <div class="scoreboard-player2-win">
-                <p class="player2-score-title">PLAYER 2</p>
-                <p class="player2-score">0</p>
-            </div>
         </div>
 
         <div class="game-container-main">
@@ -76,19 +61,33 @@
             <h3>Made by <a href="https://github.com/FranVlahovic"> FranVlahovic<img src="icons/github.svg" alt="GitHub Icon" class="github-icon"></a></h3>
         </div>
 
-        <div class="overlay">
-            <div class="player-win-screen">
-                <h2></h2>
-            </div>
-            <div class="win-screen-buttons">
-                <button type="button" id="Play-Again-button">Play Again</button>
-                <button type="button" id="Quit-button">Quit</button>
-            </div>
-        </div>
-
+        
         
     </div>
-
+    <div class="overlay">
+        <div class="player-win-screen">
+            <h2></h2>
+        </div>
+        <div class="win-screen-buttons">
+            <button type="button" id="Play-Again-button">Play Again</button>
+            <button type="button" id="Quit-button">Quit</button>
+        </div>
+    </div>
+    
+    <div class="scoreboard">
+        <div class="scoreboard-player1-win">
+            <p class="player1-score-title">PLAYER 1</p>
+            <p class="player1-score">0</p>
+        </div>
+        <div class="scoreboard-tie">
+            <p class="tie-score-title">TIES</p>
+            <p class="tie-score">0</p>
+        </div>
+        <div class="scoreboard-player2-win">
+            <p class="player2-score-title">PLAYER 2</p>
+            <p class="player2-score">0</p>
+        </div>
+    </div>
     <script src="main.js"></script>
 </body>
 </html>

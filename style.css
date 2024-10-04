@@ -17,10 +17,14 @@ body {
     align-items: center;
     padding: 5rem;
 }
+
+.show {
+    display: flex;
+}
+
 .startup-container {
     background-color: #192a32;
     border:3px solid #f2b237;
-    display: flex;
     flex-direction: column;
     height: 100vh;
     width: 100%;
@@ -52,7 +56,6 @@ body {
 .players-container {
     background-color: #192a32;
     border:3px solid #f2b237;
-    display: flex;
     flex-direction: column;
     height: 100vh;
     width: 100%;
@@ -123,13 +126,12 @@ body {
 .game-container {
     background-color: #192a32;
     border:3px solid #f2b237;
-    display: flex;
     flex-direction: column;
     justify-content: space-between;
     gap: 4em;
     height: 100vh;
     width: 100%;
-    padding: 1.5em;
+    padding: 2em;
 }
 .game-container-header {
     display: flex;
@@ -177,6 +179,11 @@ body {
     gap: 1.5em;
     width: 14em;
     border-radius: 15px;
+    margin: 0 auto;
+    position: absolute; 
+    top: 60%;
+    left: 6%;
+    transform: translateY(-60%); 
 }
 .scoreboard-player1-win {
     background-color: #32c0ba;
@@ -204,8 +211,8 @@ body {
 
 .game-container-main {
   display: flex;
-  align-items: center;
   justify-content: center;
+  align-items: center;
 }
 .grid {
     display: grid;
@@ -223,6 +230,10 @@ body {
   width: 1.7em;
   height: 1.7em;
   font-weight: bold;
+}
+.cell:hover {
+    background-color: #2e4f5f;
+    cursor: pointer;
 }
 .game-container-footer {
     display: flex;
