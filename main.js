@@ -32,15 +32,21 @@ document.addEventListener('DOMContentLoaded', () => {
     // Step 2: Select Scoreboard and Player Turn Display Elements
     const scoreBoardPlayerOne = document.querySelector('.player1-score-title');
     const scoreBoardPlayerTwo = document.querySelector('.player2-score-title');
-    const scoreBoardTies = document.querySelector('.tie-score-title');
+    const scoreBoardPlayerOneScore = document.querySelector('.player1-score');
+    const scoreBoardPlayerTwoScore = document.querySelector('.player2-score');
+    const scoreBoardTieScore = document.querySelector('.tie-score');
     const turnPlayerDisplay = document.querySelector('.player-turn h3');
     
     // Step 3: Create Variables for Player Names and Markers
     let playerOneInputValue;
     let playerTwoInputValue;
+    let playerOneScore = 0;
+    let playerTwoScore = 0;
+    let tieScore = 0;
     const playerOneMarker = 'X';
     const playerTwoMarker = 'O';
     let currentPlayer = 'playerOne';
+    
 
     // Step 4: Define Winning Combinations
     const winCombinations = [
@@ -94,25 +100,28 @@ document.addEventListener('DOMContentLoaded', () => {
     // - Add event listeners to each grid cell to handle marker placement.
     gridCells.forEach(cell => {
         cell.addEventListener('click', () => {
-            if(cell.textContent !== ""){
-                return;
-            }
-            
-            const currentPlayerMarker = (currentPlayer === 'playerOne') ? playerOneMarker : playerTwoMarker;
+            if(cell.textContent !== "") return;
 
+            const currentPlayerMarker = (currentPlayer === 'playerOne') ? playerOneMarker : playerTwoMarker;
             cell.textContent = currentPlayerMarker;
 
             if (checkForWinner(currentPlayerMarker)) {
-                overlay.show();
+                if (currentPlayerMarker === playerOneMarker) {
+                    playerOneScore++;
+                }
+                else {
+                    playerTwoScore++;
+                }
+                updateScoreboard();
+                overlay.show(`${currentPlayerMarker === playerOneMarker ? playerOneInputValue : playerTwoInputValue} Wins!`);
                 return;
             }
 
             currentPlayer = (currentPlayer === 'playerOne') ? 'playerTwo' : 'playerOne';
             turnPlayerDisplay.textContent = (currentPlayer === 'playerOne') ? playerOneInputValue : playerTwoInputValue;
             checkForTie();
-            
-        })
-    })
+        });
+    });
 
     // Step 2: Check for a Winner After Each Move
     // - Create a function that checks if the current player has achieved a winning combination.
@@ -127,15 +136,13 @@ document.addEventListener('DOMContentLoaded', () => {
         }
         return false;
     }
-    // - This function should take the current player's marker as an argument.
-    // - Loop through the winning combinations and check if any match the current state of the grid.
 
-    // Step 3: Display Overlay When a Winner is Declared
-    // - Create a function to display the overlay when a winner is found.
     const displayOverlay = () => {
         const overlay = document.querySelector('.overlay');
+        const message = document.querySelector('.message');
         return {
-            show(){
+            show(msg){
+                message.textContent = msg;
                 overlay.style.display = 'flex';
             },
             hide(){
@@ -144,21 +151,19 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
     const overlay = displayOverlay();
-    // - The overlay should show the winner's name and provide a button to restart the game.
 
-    // Step 4: Update Scoreboard for Winning Player
-    // - Create variables to keep track of Player 1's and Player 2's scores.
-    // - Inside the winning condition function, increment the score of the winning player.
+    const updateScoreboard = () => {
+        scoreBoardPlayerOneScore.textContent = playerOneScore;
+        scoreBoardPlayerTwoScore.textContent = playerTwoScore;
+        scoreBoardTieScore.textContent = tieScore;
+    }
+    const checkForTie = () => {
+        const isGridFull = [...gridCells].every(cell => cell.textContent !== "");
+        if (isGridFull && !checkForWinner(playerOneMarker) && !checkForWinner(playerTwoMarker)){
+            tieScore++;
+            updateScoreboard();
+            overlay.show("It's a tie!");
+        }
+    }
 
-    // Step 5: Reset the Game When Overlay is Closed or Restarted
-    // - Implement a function that resets the game state, including clearing the grid and resetting scores.
-    // - Ensure this function can be called when the overlay's restart button is clicked.
-
-    // Step 6: Handle Tie Situations
-    // - Add logic to check for a tie condition when the grid is full, and there’s no winner.
-    // - Display a tie message in the overlay if this situation occurs.
-
-    // Step 8: Testing the Implementation
-    // - Test the functionality by playing the game and ensuring that winning and tie conditions are correctly identified.
-    // - Make sure the overlay displays correctly and that scores update as expected.
 });

@@ -260,5 +260,45 @@ body {
 }
 
 .overlay {
+    position:absolute;
+    top:60%;
+    left:50%;
     display: none;
+    flex-direction: column;
+    justify-content: center;
+    gap: 3em;
+    padding: 6em 0;
+    transform:translate(-50%, -50%);
+    background-color: #000000;
+    width: 50em;
+    height: 20em;
+    border-radius: 10px;
+    border: 2px solid #f2b237;
+    background-color: #192a32;
+    z-index: 1000;
+}
+.player-win-screen {
+    background-color: #f2b237;
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    color: #1f3540;
+    font-size: 3em;
+}
+.overlay button {
+    background-color: #32c0ba;
+    font-size: 1.4em;
+    padding: 10px 15px;
+    color: white;
+    font-weight: bold;
+    border: none;
+    border-radius: 30px;
+    cursor: pointer;
+}
+#quit-button {
+    width: 6.5em;
+}
+.win-screen-buttons {
+    display:flex;
+    gap: 3em;
 }
