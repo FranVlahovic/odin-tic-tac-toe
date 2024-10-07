@@ -33,13 +33,13 @@ body {
     gap: 6em;
 }
 .startup-container button {
-    background-color: #32c0ba;
+    border: 2px solid #32c0ba;
+    background-color: transparent;
     font-size: 1.4em;
     padding: 10px 15px;
-    width: 40%;
+    width: 25%;
     color: white;
     font-weight: bold;
-    border: none;
     border-radius: 30px;
     cursor: pointer;
 }
@@ -110,13 +110,13 @@ body {
     font-size: 1.3em;
 }
 .players-container button {
-    background-color: #32c0ba;
+    border: 2px solid #32c0ba;
     font-size: 1.4em;
     margin-top: 1em;
     padding: 10px 15px;
     color: white;
     font-weight: bold;
-    border: none;
+    background-color: transparent;
     border-radius: 30px;
     cursor: pointer;
 }
@@ -253,6 +253,9 @@ body {
 .game-container-footer a:visited {
     color: white;
 }
+.game-container-footer a:hover {  
+    filter: brightness(0) saturate(100%) invert(90%) sepia(81%) saturate(6635%) hue-rotate(132deg) brightness(77%) contrast(87%);
+}
 .github-icon {
     width: 2em;
     filter: invert(1);
@@ -270,7 +273,7 @@ body {
     padding: 6em 0;
     transform:translate(-50%, -50%);
     background-color: #000000;
-    width: 50em;
+    width: 40em;
     height: 20em;
     border-radius: 10px;
     border: 2px solid #f2b237;
@@ -278,27 +281,67 @@ body {
     z-index: 1000;
 }
 .player-win-screen {
-    background-color: #f2b237;
+    background-color: #1f3540;
+    color: white;
     display: flex;
     justify-content: center;
+    align-items: center;
     width: 100%;
-    color: #1f3540;
+    height: 4em;
     font-size: 3em;
 }
-.overlay button {
-    background-color: #32c0ba;
+.final-overlay button {
     font-size: 1.4em;
     padding: 10px 15px;
+    width: 8em;
     color: white;
     font-weight: bold;
-    border: none;
+    background-color: transparent;
+    border: 2px solid #32c0ba;
     border-radius: 30px;
     cursor: pointer;
 }
-#quit-button {
-    width: 6.5em;
+.final-overlay button:hover {
+    opacity: 0.85;
+}
+
+.final-win-screen {
+    background-color: #1f3540;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    padding: 0.4em;
+    height: 4em;
+    font-size: 3em;
 }
 .win-screen-buttons {
     display:flex;
     gap: 3em;
+}
+.final-overlay {
+    display: none;
+    position:absolute;
+    top:60%;
+    left:50%;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.7em;
+    padding: 6em 0;
+    transform:translate(-50%, -50%);
+    background-color: #000000;
+    width: 40em;
+    height: 20em;
+    border-radius: 10px;
+    border: 2px solid #f2b237;
+    background-color: #192a32;
+    z-index: 1000;
+}
+
+.x-marker, .x-player-turn {
+    color: #32c0ba;
+}
+.o-marker, .o-player-turn{
+    color: #f2b237;
 }

@@ -19,11 +19,14 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const playGameButton = document.querySelector('.startup-button');
     const startGameButton = document.querySelector('#start-game-button');
+    const playAgainButton = document.querySelector('#play-again-button');
+    const quitButton = document.querySelector('#quit-button');
 
     startupSection.show();
     playersSection.hide();
     gameSection.hide();
     scoreBoard.hide();
+    
 
     // Step 1: Select Player Input Elements
     const playerOneInput = document.querySelector('#player1-name');
@@ -59,7 +62,7 @@ document.addEventListener('DOMContentLoaded', () => {
         [0, 4, 8],
         [2, 4, 6]
     ];
-
+    
     playGameButton.addEventListener('click', () => {
         startupSection.hide();
         playersSection.show();
@@ -82,18 +85,23 @@ document.addEventListener('DOMContentLoaded', () => {
         scoreBoard.show();
     });
 
+
+
     // Step 1: Select Grid Cells and Clear Button
     // - Use document.querySelectorAll to select all the grid cells.
     const gridCells = document.querySelectorAll('.cell');
     // - Use document.querySelector to select the clear button.
     const clear = document.querySelector('#clear-button');
-
+    
+    const clearCells = () => {
+        gridCells.forEach(cell => {
+            cell.textContent = "";
+        })
+    }
     // Step 2: Add Event Listener to Clear Button
     // - When the clear button is clicked, loop through the cells and reset their content.
     clear.addEventListener('click', () => {
-        gridCells.forEach(cell => {
-            cell.textContent = "";
-        });
+        clearCells();
     })
 
     // Step 3: Handle Cell Clicks for Marker Placement
@@ -103,7 +111,11 @@ document.addEventListener('DOMContentLoaded', () => {
             if(cell.textContent !== "") return;
 
             const currentPlayerMarker = (currentPlayer === 'playerOne') ? playerOneMarker : playerTwoMarker;
+            const currentPlayerClass = (currentPlayer === 'playerOne') ? 'x-marker' : 'o-marker';
+            const currentPlayerTurnClass = (currentPlayer === 'playerOne') ? 'x-player-turn' : 'o-player-turn';
+            
             cell.textContent = currentPlayerMarker;
+            cell.classList.add(currentPlayerClass);
 
             if (checkForWinner(currentPlayerMarker)) {
                 if (currentPlayerMarker === playerOneMarker) {
@@ -112,13 +124,23 @@ document.addEventListener('DOMContentLoaded', () => {
                 else {
                     playerTwoScore++;
                 }
+
+                if (playerOneScore === 3 || playerTwoScore === 3){
+                    resetScoreboard();
+                    finalOverlay.show(`Winner is ${currentPlayerMarker === playerOneMarker ? playerOneInputValue : playerTwoInputValue}`);
+                    return;
+                }
+
                 updateScoreboard();
-                overlay.show(`${currentPlayerMarker === playerOneMarker ? playerOneInputValue : playerTwoInputValue} Wins!`);
+                clearCells();
+                overlay.show(`Victory for ${currentPlayerMarker === playerOneMarker ? playerOneInputValue : playerTwoInputValue}`);
                 return;
             }
 
+            
+
             currentPlayer = (currentPlayer === 'playerOne') ? 'playerTwo' : 'playerOne';
-            turnPlayerDisplay.textContent = (currentPlayer === 'playerOne') ? playerOneInputValue : playerTwoInputValue;
+            updatePlayerTurnDisplay();
             checkForTie();
         });
     });
@@ -144,26 +166,89 @@ document.addEventListener('DOMContentLoaded', () => {
             show(msg){
                 message.textContent = msg;
                 overlay.style.display = 'flex';
+
+                setTimeout(() => {
+                    this.hide();
+                },3000);
             },
             hide(){
                 overlay.style.display = 'none';
             }
         }
     }
+
     const overlay = displayOverlay();
+
+    const displayFinalOverlay = () => {
+        const overlay = document.querySelector('.final-overlay');
+        const message = document.querySelector('.final-message');
+        return {
+            show(msg){
+                message.textContent = msg;
+                overlay.style.display = 'flex';
+            },
+            hide(){
+                overlay.style.display = 'none';
+            }
+        }
+    }
+    const finalOverlay = displayFinalOverlay();
 
     const updateScoreboard = () => {
         scoreBoardPlayerOneScore.textContent = playerOneScore;
         scoreBoardPlayerTwoScore.textContent = playerTwoScore;
         scoreBoardTieScore.textContent = tieScore;
     }
+
+    const updatePlayerTurnDisplay = () => {
+        if(currentPlayer === 'playerOne'){
+            turnPlayerDisplay.textContent = playerOneInputValue;
+            turnPlayerDisplay.className = 'x-player-turn';
+        }else{
+            turnPlayerDisplay.textContent = playerTwoInputValue;
+            turnPlayerDisplay.className = 'o-player-turn';
+        }
+    }
+
     const checkForTie = () => {
         const isGridFull = [...gridCells].every(cell => cell.textContent !== "");
         if (isGridFull && !checkForWinner(playerOneMarker) && !checkForWinner(playerTwoMarker)){
             tieScore++;
             updateScoreboard();
+            clearCells();
             overlay.show("It's a tie!");
         }
     }
+    const resetScoreboard = () => {
+        playerOneScore = 0;
+        playerTwoScore = 0;
+        tieScore = 0;
+        updateScoreboard();
+    }
+    
+    const resetPlayerInputs = () => {
+        playerOneInputValue = "";
+        playerTwoInputValue = "";
+        playerOneInput.value = "";
+        playerTwoInput.value = "";
+    }
 
+    playAgainButton.addEventListener('click', () => {
+        resetScoreboard();
+        finalOverlay.hide();
+        clearCells();
+    })
+
+    quitButton.addEventListener('click', () => {
+        finalOverlay.hide();
+
+        resetPlayerInputs();
+        resetScoreboard();
+        clearCells();
+
+        startupSection.show();
+        playersSection.hide();
+        gameSection.hide();
+        scoreBoard.hide();
+    })
 });
