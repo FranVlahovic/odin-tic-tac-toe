@@ -2,7 +2,9 @@
 
 This repository contains the **Tic Tac Toe** project from The Odin Project.
 
-![Tic Tac Toe Preview](path/to/your/image.png)
+![screencapture-127-0-0-1-5500-index-html-2024-10-08-21_42_13](https://github.com/user-attachments/assets/58fba9ff-ada6-4168-899c-b67e9d977064)
+![screencapture-127-0-0-1-5500-index-html-2024-10-08-21_42_28](https://github.com/user-attachments/assets/24038fd3-8fc7-4192-aa4f-d7510a70859c)
+![screencapture-127-0-0-1-5500-index-html-2024-10-08-21_43_00](https://github.com/user-attachments/assets/5060fe18-ac97-45ac-8ce8-0801b236767e)
 
 ## Table of Contents
 - [Description](#description)
