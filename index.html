@@ -28,20 +28,21 @@
             <button type="button" id="start-game-button">START GAME</button>
         </form>
     </div>
-
     <div class="game-container">
         <div class="game-container-header">
-            <div class="game-logo-container">
-                <img src="images/ttt_logo.png" alt="Game logo" class="startup-game-logo">
-            </div>
-            <div class="player-turn">
-                <h3>Player Name</h3>
-            </div>
             <button type="button" id="clear-button">
                 <img src="icons/refresh.svg" alt="Refresh Icon" class="clear-img">
             </button>
+            <div class="player-turn">
+                <h3>Player Name</h3>
+            </div>
+            <button type="button" id="exit-button">
+                <img src="icons/window-close.svg" alt="Close Icon" class="exit-img">
+            </button>
         </div>
-
+        <div class="game-logo-container">
+            <img src="images/ttt_logo.png" alt="Game logo" class="startup-game-logo">
+        </div>
         <div class="game-container-main">
             <div class="grid">
                 <div class="cell"></div>
@@ -78,7 +79,15 @@
             <h2 class="message"></h2>
         </div>
     </div>
-    
+    <div class="exit-overlay">
+        <div class="final-win-screen">
+            <h2 class="final-message">Are you sure?</h2>
+        </div>
+        <div class="win-screen-buttons">
+            <button type="button" id="cancel-button">Cancel</button>
+            <button type="button" id="quit-overlay-button">Quit</button>
+        </div>
+    </div>
     <div class="scoreboard">
         <div class="scoreboard-player1-win">
             <p class="player1-score-title">PLAYER 1</p>

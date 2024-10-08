@@ -136,7 +136,8 @@ body {
 .game-container-header {
     display: flex;
     justify-content: center;
-    gap: 6em;
+    align-items: center;
+    gap: 4em;
 }
 
 .game-logo-container {
@@ -145,7 +146,8 @@ body {
 }
 .game-logo-container img {
     position: absolute;
-    right: 25em;
+    right: 0em;
+    bottom: 4em;
 }
 .player-turn {
     display: flex;
@@ -159,15 +161,20 @@ body {
     margin-top: 0.5em;
     font-size: 1.7em;
 }
-#clear-button {
-    height: 6em;
-    width: 6em;
+#clear-button, #exit-button {
+    height: 5.5em;
+    width: 5.5em;
     padding: 0.8em;
     margin-top: 1em;
     border-radius: 15px;
+    border: 2px solid #f2b237;
+    background-color: transparent;
     cursor: pointer;
 }
-#clear-button:hover {
+#clear-button img, #exit-button img {
+    filter: invert(1);
+}
+#clear-button:hover, #exit-button:hover {
     opacity: 0.85;
 }
 
@@ -290,7 +297,7 @@ body {
     height: 4em;
     font-size: 3em;
 }
-.final-overlay button {
+.final-overlay button, .exit-overlay button {
     font-size: 1.4em;
     padding: 10px 15px;
     width: 8em;
@@ -320,7 +327,7 @@ body {
     display:flex;
     gap: 3em;
 }
-.final-overlay {
+.final-overlay, .exit-overlay {
     display: none;
     position:absolute;
     top:60%;
@@ -339,6 +346,10 @@ body {
     z-index: 1000;
 }
 
+input:-webkit-autofill { 
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: white
+}
 .x-marker, .x-player-turn {
     color: #32c0ba;
 }

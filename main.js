@@ -21,6 +21,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const startGameButton = document.querySelector('#start-game-button');
     const playAgainButton = document.querySelector('#play-again-button');
     const quitButton = document.querySelector('#quit-button');
+    const cancelButton = document.querySelector('#cancel-button');
+    const quitOverlayButton = document.querySelector('#quit-overlay-button');
 
     startupSection.show();
     playersSection.hide();
@@ -78,7 +80,7 @@ document.addEventListener('DOMContentLoaded', () => {
         scoreBoardPlayerTwo.textContent = playerTwoInputValue;
 
         // Step 7: Set Initial Turn Display
-        turnPlayerDisplay.textContent = playerOneInputValue;
+        updatePlayerTurnDisplay();
 
         playersSection.hide();
         gameSection.show();
@@ -92,20 +94,22 @@ document.addEventListener('DOMContentLoaded', () => {
     const gridCells = document.querySelectorAll('.cell');
     // - Use document.querySelector to select the clear button.
     const clear = document.querySelector('#clear-button');
+    const exit = document.querySelector('#exit-button');
     
     const clearCells = () => {
         gridCells.forEach(cell => {
             cell.textContent = "";
         })
     }
-    // Step 2: Add Event Listener to Clear Button
-    // - When the clear button is clicked, loop through the cells and reset their content.
+
+    exit.addEventListener('click', () => {
+        exitGameOverlay.show();
+    })
+
     clear.addEventListener('click', () => {
         clearCells();
     })
 
-    // Step 3: Handle Cell Clicks for Marker Placement
-    // - Add event listeners to each grid cell to handle marker placement.
     gridCells.forEach(cell => {
         cell.addEventListener('click', () => {
             if(cell.textContent !== "") return;
@@ -114,6 +118,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const currentPlayerClass = (currentPlayer === 'playerOne') ? 'x-marker' : 'o-marker';
             const currentPlayerTurnClass = (currentPlayer === 'playerOne') ? 'x-player-turn' : 'o-player-turn';
             
+            cell.classList.remove('x-marker', 'o-marker');
             cell.textContent = currentPlayerMarker;
             cell.classList.add(currentPlayerClass);
 
@@ -194,6 +199,19 @@ document.addEventListener('DOMContentLoaded', () => {
     }
     const finalOverlay = displayFinalOverlay();
 
+    const exitOverlay = () => {
+        const overlay = document.querySelector('.exit-overlay');
+        return {
+            show(){
+                overlay.style.display = 'flex';
+            },
+            hide(){
+                overlay.style.display = 'none';
+            }
+        }
+    }
+    const exitGameOverlay = exitOverlay();
+
     const updateScoreboard = () => {
         scoreBoardPlayerOneScore.textContent = playerOneScore;
         scoreBoardPlayerTwoScore.textContent = playerTwoScore;
@@ -241,6 +259,23 @@ document.addEventListener('DOMContentLoaded', () => {
 
     quitButton.addEventListener('click', () => {
         finalOverlay.hide();
+
+        resetPlayerInputs();
+        resetScoreboard();
+        clearCells();
+
+        startupSection.show();
+        playersSection.hide();
+        gameSection.hide();
+        scoreBoard.hide();
+    })
+
+    cancelButton.addEventListener('click', () => {
+        exitGameOverlay.hide();
+    })
+
+    quitOverlayButton.addEventListener('click', () => {
+        exitGameOverlay.hide();
 
         resetPlayerInputs();
         resetScoreboard();
